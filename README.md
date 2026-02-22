@@ -47,7 +47,7 @@ This module is based on and heavily inspired by the following open-source projec
 - `ConsolePanel.kt` — ported from `org.allaymc.server.gui.ConsolePanel`
 - `GraphPanel.kt` — ported from `org.allaymc.server.gui.GraphPanel`
 
-### [<img src="https://geysermc.org/img/apple-touch-icon.png" width="16"/>](https://github.com/AllayMC/Allay) [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser)
+### [<img src="https://geysermc.org/img/apple-touch-icon.png" width="16"/>](https://github.com/GeyserMC/Geyser) [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser)
 - `ANSIColor.kt` — ANSI color parsing logic originally authored by GeyserMC, later adapted by AllayMC
 
 All original code is licensed under the **MIT License**.
