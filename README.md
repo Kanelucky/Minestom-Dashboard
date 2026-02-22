@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.Kanelucky:Minestom-Dashboard:v0.1.0")
+    implementation("com.github.Kanelucky:Minestom-Dashboard:v0.1.1")
 }
 ```
 
@@ -47,7 +47,7 @@ dashboard.afterServerStarted();
 
 This library is based on and heavily inspired by the following open-source projects:
 
-### [<img src="https://raw.githubusercontent.com/AllayMC/Allay/refs/heads/master/server/src/main/resources/icon.png" width="16"/>](https://github.com/AllayMC/Allay) [AllayMC/Allay](https://github.com/AllayMC/Allay)
+### [<img src="https://raw.githubusercontent.com/AllayMC/Allay/refs/heads/master/server/src/main/resources/icon.png" width="30"/>](https://github.com/AllayMC/Allay) [AllayMC/Allay](https://github.com/AllayMC/Allay)
 - `Dashboard.kt` — ported from `org.allaymc.server.gui.Dashboard` (originally by daoge_cmd)
 - `ConsolePanel.kt` — ported from `org.allaymc.server.gui.ConsolePanel` (originally by GeyserMC, adapted by daoge_cmd)
 - `GraphPanel.kt` — ported from `org.allaymc.server.gui.GraphPanel` (originally by GeyserMC, adapted by daoge_cmd)
@@ -56,7 +56,7 @@ This library is based on and heavily inspired by the following open-source proje
 Licensed under the **GNU Lesser General Public License v3.0 (LGPL-3.0)**.  
 Copyright (c) AllayMC Contributors
 
-### [<img src="https://geysermc.org/img/apple-touch-icon.png" width="16"/>](https://github.com/GeyserMC/Geyser) [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser)
+### [<img src="https://geysermc.org/img/apple-touch-icon.png" width="30"/>](https://github.com/GeyserMC/Geyser) [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser)
 - Original author of `ConsolePanel`, `GraphPanel`, and `ANSIColor` logic
 
 Licensed under the **MIT License**.  
