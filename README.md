@@ -43,15 +43,18 @@ implementation("com.formdev:flatlaf:3.4")
 This module is based on and heavily inspired by the following open-source projects:
 
 ### [<img src="https://raw.githubusercontent.com/AllayMC/Allay/refs/heads/master/server/src/main/resources/icon.png" width="16"/>](https://github.com/AllayMC/Allay) [AllayMC/Allay](https://github.com/AllayMC/Allay)
-- `Dashboard.kt` — ported from `org.allaymc.server.gui.Dashboard`
-- `ConsolePanel.kt` — ported from `org.allaymc.server.gui.ConsolePanel`
-- `GraphPanel.kt` — ported from `org.allaymc.server.gui.GraphPanel`
+- `Dashboard.kt` — ported from `org.allaymc.server.gui.Dashboard` (originally by daoge_cmd)
+- `ConsolePanel.kt` — ported from `org.allaymc.server.gui.ConsolePanel` (originally by GeyserMC, adapted by daoge_cmd)
+- `GraphPanel.kt` — ported from `org.allaymc.server.gui.GraphPanel` (originally by GeyserMC, adapted by daoge_cmd)
+- `ANSIColor.kt` — ported from `org.allaymc.server.gui.ANSIColor` (originally by GeyserMC, adapted by daoge_cmd)
+
+Licensed under the **GNU Lesser General Public License v3.0 (LGPL-3.0)**.  
+Copyright (c) AllayMC Contributors
 
 ### [<img src="https://geysermc.org/img/apple-touch-icon.png" width="16"/>](https://github.com/GeyserMC/Geyser) [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser)
-- `ANSIColor.kt` — ANSI color parsing logic originally authored by GeyserMC, later adapted by AllayMC
+- Original author of `ConsolePanel`, `GraphPanel`, and `ANSIColor` logic
 
-All original code is licensed under the **MIT License**.
+Licensed under the **MIT License**.  
 Copyright (c) 2019-2022 GeyserMC
-Copyright (c) AllayMC Contributors
 
 

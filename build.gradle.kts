@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("net.minestom:minestom:2026.02.19-1.21.11")
+    compileOnly("net.minestom:minestom:2026.02.19-1.21.11")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("com.formdev:flatlaf:3.4")
 }
