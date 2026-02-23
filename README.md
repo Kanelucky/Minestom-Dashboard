@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 Add the dependency to your `build.gradle.kts`:
 ```kotlin
 dependencies {
-    implementation("com.github.Kanelucky:Minestom-Dashboard:v0.1.1")
+    implementation("com.github.Kanelucky:Minestom-Dashboard:v0.1.2")
 }
 ```
 
