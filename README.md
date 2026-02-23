@@ -13,13 +13,18 @@ A lightweight server dashboard for Minestom, built with Java Swing.
 
 ## Installation
 
-Add JitPack to your `build.gradle.kts`:
-
+Add JitPack to your `settings.gradle.kts`:
 ```kotlin
-repositories {
-    maven("https://jitpack.io")
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
 }
+```
 
+Add the dependency to your `build.gradle.kts`:
+```kotlin
 dependencies {
     implementation("com.github.Kanelucky:Minestom-Dashboard:v0.1.1")
 }
@@ -27,21 +32,46 @@ dependencies {
 
 ## Usage
 
+### Kotlin
 ```kotlin
 // Before starting the server
-val dashboard = Dashboard.getInstance()
+val dashboard = Dashboard.getInstance(
+    DashboardConfig(
+        title = "My Server",
+        playerCountPrefix = "Online: ",
+        playerColumns = arrayOf("Name", "UUID")
+    )
+)
 
 // After server has started
 dashboard.afterServerStarted()
 ```
 
+### Java
 ```java
 // Before starting the server
-Dashboard dashboard = Dashboard.getInstance();
+Dashboard dashboard = Dashboard.getInstance(
+    new DashboardConfig("My Server", "Online: ", new String[]{"Name", "UUID"})
+);
 
 // After server has started
 dashboard.afterServerStarted();
 ```
+
+### Default config
+```kotlin
+// Uses default config (title: "Minestom Dashboard")
+val dashboard = Dashboard.getInstance()
+dashboard.afterServerStarted()
+```
+
+## Configuration
+
+| Field | Default | Description |
+|---|---|---|
+| `title` | `"Minestom Dashboard"` | Window title |
+| `playerCountPrefix` | `"Online: "` | Prefix for player count label |
+| `playerColumns` | `["Name", "UUID"]` | Column headers for player table |
 
 ## Credits
 
@@ -69,3 +99,4 @@ Modifications made from original:
 - Replaced AllayMC APIs with Minestom APIs
 - Removed plugin tab
 - Added TPS graph alongside RAM graph
+- Added `DashboardConfig` for customization

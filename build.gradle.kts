@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.kanelucky"
-version = "0.1.1"
+version = "0.1.2"
 
 repositories {
     mavenCentral()
@@ -13,6 +13,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     compileOnly("net.minestom:minestom:2026.02.19-1.21.11")
+    compileOnly("ch.qos.logback:logback-classic:1.5.24")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("com.formdev:flatlaf:3.4")
 }

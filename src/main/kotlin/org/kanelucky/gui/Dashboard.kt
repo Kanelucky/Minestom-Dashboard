@@ -14,34 +14,37 @@ import javax.swing.table.DefaultTableModel
  * Ported from AllayMC Dashboard (originally by daoge_cmd)
  * @author Kanelucky
  */
-class Dashboard private constructor() {
+class Dashboard private constructor(
+    private val config: DashboardConfig = DashboardConfig()
+) {
 
     companion object {
         private const val RAM_VALUE_COUNT = 100
         private const val MEGABYTE = 1024L * 1024L
         private var INSTANCE: Dashboard? = null
 
-        fun getInstance(): Dashboard {
+        @Synchronized
+        fun getInstance(config: DashboardConfig = DashboardConfig()): Dashboard {
             if (INSTANCE == null) {
                 FlatMacDarkLaf.setup()
-                INSTANCE = Dashboard()
+                INSTANCE = Dashboard(config)
             }
             return INSTANCE!!
         }
     }
 
-    private val frame = JFrame("Minestom4fun")
+    private val frame = JFrame(config.title)
     private val consolePane = ConsolePanel()
     private val cmdInput = JTextField()
     private val ramGraph = GraphPanel()
     private val tpsGraph = GraphPanel()
     private val playerTable = JTable()
+    private val playerCountLabel = JLabel("${config.playerCountPrefix}0")
     private val ramValues = ArrayDeque(Collections.nCopies(RAM_VALUE_COUNT, 0))
     private val tpsValues = ArrayDeque(Collections.nCopies(RAM_VALUE_COUNT, 0))
 
     init {
         setupUI()
-        wrapSystemOutputStreams()
     }
 
     private fun setupUI() {
@@ -54,7 +57,6 @@ class Dashboard private constructor() {
         frame.setSize(800, 600)
         frame.setLocationRelativeTo(null)
 
-        // Icon
         val icon = Dashboard::class.java.classLoader.getResource("icon.png")
         if (icon != null) frame.iconImage = ImageIcon(icon).image
 
@@ -96,13 +98,11 @@ class Dashboard private constructor() {
         val panel = JPanel(BorderLayout())
         val innerTabs = JTabbedPane()
 
-        // RAM graph
         val ramPanel = JPanel(BorderLayout())
         ramGraph.setValues(ramValues)
         ramPanel.add(ramGraph, BorderLayout.CENTER)
         innerTabs.addTab("Memory", ramPanel)
 
-        // TPS graph
         val tpsPanel = JPanel(BorderLayout())
         tpsGraph.setValues(tpsValues)
         tpsPanel.add(tpsGraph, BorderLayout.CENTER)
@@ -114,13 +114,12 @@ class Dashboard private constructor() {
 
     private fun createPlayersTab(): JPanel {
         val panel = JPanel(BorderLayout())
-        val countLabel = JLabel("Online: 0")
-        countLabel.border = BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        playerCountLabel.border = BorderFactory.createEmptyBorder(4, 8, 4, 8)
 
         playerTable.autoCreateRowSorter = true
         val scrollPane = JScrollPane(playerTable)
 
-        panel.add(countLabel, BorderLayout.NORTH)
+        panel.add(playerCountLabel, BorderLayout.NORTH)
         panel.add(scrollPane, BorderLayout.CENTER)
         return panel
     }
@@ -139,6 +138,7 @@ class Dashboard private constructor() {
     }
 
     fun afterServerStarted() {
+        wrapSystemOutputStreams()
         cmdInput.isEnabled = true
 
         MinecraftServer.getSchedulerManager().buildTask {
@@ -173,11 +173,12 @@ class Dashboard private constructor() {
     private fun updatePlayerTable() {
         val players = MinecraftServer.getConnectionManager().onlinePlayers
         val data = players.map { arrayOf(it.username, it.uuid.toString()) }.toTypedArray()
-        val model = object : DefaultTableModel(data, arrayOf("Name", "UUID")) {
+        val model = object : DefaultTableModel(data, config.playerColumns) {
             override fun isCellEditable(row: Int, column: Int) = false
         }
         playerTable.model = model
         playerTable.tableHeader.reorderingAllowed = false
+        playerCountLabel.text = "${config.playerCountPrefix}${players.size}"
     }
 
     fun appendTextToConsole(text: String) {
